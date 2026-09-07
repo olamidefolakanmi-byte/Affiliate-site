@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Football Hub - Live Scores & World News</title>
+    <title>Global Football Center - Live Scores & News</title>
     <style>
         :root {
             --primary-green: #00874e;
             --dark-green: #005c35;
-            --light-bg: #f4fbf7;
+            --light-bg: #f8fafc;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
-            --text-muted: #475569;
+            --text-muted: #64748b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-dark); line-height: 1.5; }
+        html, body { width: 100%; overflow-x: hidden; background-color: var(--light-bg); color: var(--text-dark); }
 
-        header { background: #ffffff; padding: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        /* Header Navigation */
+        header { background: #ffffff; padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary-green); text-decoration: none; }
-        nav a { margin-left: 0.5rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
+        nav a { margin-left: 0.75rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
 
-        .hero { background: linear-gradient(rgba(0, 135, 78, 0.9), rgba(0, 92, 53, 0.95)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80') center/cover; color: #ffffff; padding: 2.5rem 1.25rem; text-align: center; }
-        .hero h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .hero p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 1rem; }
+        /* Full Screen Live Score Container */
+        .livescore-section { width: 100vw; margin: 0; padding: 0; background: #ffffff; }
+        .section-header { text-align: center; padding: 1.5rem 1rem 0.5rem; background: #ffffff; }
+        .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+        .section-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
 
-        .section-title { font-size: 1.5rem; font-weight: 800; text-align: center; margin: 2rem 0 0.25rem; color: var(--text-dark); }
-        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; padding: 0 1rem; }
+        /* Full Height / Full Width iFrame */
+        .full-livescore-frame { width: 100vw; height: 88vh; min-height: 650px; border: none; display: block; }
 
-        /* Direct Widget Container */
-        .livescore-wrapper { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 0.75rem; min-height: 600px; }
-        
-        /* News Section */
-        .news-container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-        .news-card { background: var(--card-bg); border-radius: 16px; padding: 1.25rem; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; }
+        /* World News Section */
+        .news-section { padding: 2rem 1rem; max-width: 1200px; margin: 0 auto; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; margin-top: 1rem; }
+        .news-card { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
         .news-source { font-size: 0.75rem; color: var(--primary-green); font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem; }
-        .news-title { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
+        .news-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
         .news-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-        footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; margin-top: 3rem; border-top: 1px solid #e2e8f0; }
+        footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; border-top: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
@@ -51,30 +52,32 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Global Football Center</h1>
-        <p>Live real-time match tracking and worldwide news feeds.</p>
+    <!-- FULL PAGE LIVESCORES -->
+    <section class="livescore-section" id="livescores">
+        <div class="section-header">
+            <h1 class="section-title">Worldwide Live Scores</h1>
+            <p class="section-subtitle">Real-time match data updated live across global leagues</p>
+        </div>
+        
+        <!-- Full display viewport width & height frame -->
+        <iframe src="https://www.scorebat.com/embed/livescore/" class="full-livescore-frame" allowfullscreen></iframe>
     </section>
 
-    <!-- Embedded ScoreBat JS Widget (Seamless) -->
-    <h2 class="section-title" id="livescores">Worldwide Live Scores</h2>
-    <p class="section-subtitle">Real-time match data updated live.</p>
-    
-    <div class="livescore-wrapper">
-        <iframe src="https://www.scorebat.com/embed/livescore/?token=MTY4NDQyXzE3MjU3MTU1OTVfOTNhNmY5ZWY0YmI0NmQ4YThmYzA5ODJkMDRjMmQ4MjhhYmIyMjM0Yw==" frameborder="0" width="100%" height="700" allowfullscreen style="width:0;min-width:100%;border:none;" class="scorebat-livescore-widget"></iframe>
-        <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://www.scorebat.com/embed/embed.js?v=arrv'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'scorebat-jssdk'));</script>
-    </div>
-
-    <!-- Automated World News -->
-    <h2 class="section-title" id="news">Breaking World News</h2>
-    <p class="section-subtitle">Latest news pulled directly from global sports feeds.</p>
-    
-    <div class="news-container" id="news-feed">
-        <p style="text-align: center; grid-column: 1/-1;">Loading live global news...</p>
-    </div>
+    <!-- BREAKING WORLD NEWS -->
+    <section class="news-section" id="news">
+        <div style="text-align: center;">
+            <h2 class="section-title">Breaking World News</h2>
+            <p class="section-subtitle">Updated automatically from global football sports feeds</p>
+        </div>
+        
+        <div class="news-grid" id="news-feed">
+            <p style="text-align: center; grid-column: 1/-1;">Loading live world news...</p>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2026 Global Football Hub. All rights reserved.</p>
+        <p style="margin-top:0.4rem;">Live scores updated automatically in real-time.</p>
     </footer>
 
     <script>

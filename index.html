@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Football Center - Live Scores & News</title>
+    <title>Global Football Center - Live Scores & World News</title>
     <style>
         :root {
             --primary-green: #00874e;
@@ -22,14 +22,12 @@
         .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary-green); text-decoration: none; }
         nav a { margin-left: 0.75rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
 
-        /* Full Screen Live Score Container */
-        .livescore-section { width: 100vw; margin: 0; padding: 0; background: #ffffff; }
-        .section-header { text-align: center; padding: 1.5rem 1rem 0.5rem; background: #ffffff; }
+        .section-header { text-align: center; padding: 1.5rem 1rem 1rem; background: #ffffff; }
         .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
         .section-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
 
-        /* Full Height / Full Width iFrame */
-        .full-livescore-frame { width: 100vw; height: 88vh; min-height: 650px; border: none; display: block; }
+        /* Full-Width Native Widget Container */
+        .livescore-native-container { width: 100%; min-height: 600px; padding: 0 0.5rem; max-width: 1200px; margin: 0 auto; }
 
         /* World News Section */
         .news-section { padding: 2rem 1rem; max-width: 1200px; margin: 0 auto; }
@@ -39,7 +37,7 @@
         .news-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
         .news-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-        footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; border-top: 1px solid #e2e8f0; }
+        footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
     </style>
 </head>
 <body>
@@ -52,15 +50,23 @@
         </nav>
     </header>
 
-    <!-- FULL PAGE LIVESCORES -->
-    <section class="livescore-section" id="livescores">
+    <!-- NATIVE FULL-WIDTH LIVESCORES -->
+    <section id="livescores">
         <div class="section-header">
             <h1 class="section-title">Worldwide Live Scores</h1>
-            <p class="section-subtitle">Real-time match data updated live across global leagues</p>
+            <p class="section-subtitle">Real-time match data updated automatically across global leagues</p>
         </div>
         
-        <!-- Full display viewport width & height frame -->
-        <iframe src="https://www.scorebat.com/embed/livescore/" class="full-livescore-frame" allowfullscreen></iframe>
+        <div class="livescore-native-container">
+            <!-- Native ScoreAxis Script Widget -->
+            <div class="scoreaxis-widget" 
+                 data-widget="livescore" 
+                 data-inst="YOUR_WIDGET_KEY_HERE" 
+                 data-lang="en" 
+                 data-theme="light">
+            </div>
+            <script src="https://www.scoreaxis.com/client/widget.js" async></script>
+        </div>
     </section>
 
     <!-- BREAKING WORLD NEWS -->

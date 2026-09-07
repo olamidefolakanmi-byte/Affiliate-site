@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Football Center - Live Scores & World News</title>
+    <title>Global Football Center - Scores, News & Tips</title>
     <style>
         :root {
             --primary-green: #00874e;
-            --dark-green: #005c35;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
@@ -15,26 +14,33 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        html, body { width: 100%; overflow-x: hidden; background-color: var(--light-bg); color: var(--text-dark); }
+        body { background-color: var(--light-bg); color: var(--text-dark); line-height: 1.5; }
 
-        /* Header Navigation */
         header { background: #ffffff; padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary-green); text-decoration: none; }
         nav a { margin-left: 0.75rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
 
-        .section-header { text-align: center; padding: 1.5rem 1rem 1rem; background: #ffffff; }
-        .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
-        .section-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
+        .section-header { text-align: center; padding: 1.5rem 1rem 0.5rem; }
+        .section-title { font-size: 1.4rem; font-weight: 800; color: var(--text-dark); }
+        .section-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
 
-        /* Full-Width Live Scores Container */
-        .livescore-container { width: 100%; min-height: 600px; padding: 0 0.5rem; max-width: 1200px; margin: 0 auto; overflow-x: auto; }
+        /* Full Width Live Scores Frame */
+        .livescore-wrapper { width: 100%; max-width: 1200px; margin: 0 auto; background: #ffffff; }
+        iframe { width: 100%; height: 700px; border: none; display: block; }
 
-        /* World News Section */
-        .news-section { padding: 2rem 1rem; max-width: 1200px; margin: 0 auto; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; margin-top: 1rem; }
-        .news-card { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        /* Predictions & Tips */
+        .tips-container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; display: grid; gap: 0.75rem; }
+        .tip-card { background: var(--card-bg); border-radius: 12px; padding: 1rem; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+        .match-league { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+        .match-teams { font-weight: 700; font-size: 0.95rem; }
+        .prediction-badge { background: #e6f4ea; color: var(--primary-green); font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; }
+
+        /* News Section */
+        .news-section { padding: 1rem; max-width: 1200px; margin: 0 auto; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .news-card { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; }
         .news-source { font-size: 0.75rem; color: var(--primary-green); font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem; }
-        .news-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
+        .news-title { font-size: 1rem; font-weight: 700; line-height: 1.35; margin-bottom: 0.5rem; }
         .news-desc { font-size: 0.85rem; color: var(--text-muted); }
 
         footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 2rem; }
@@ -45,32 +51,53 @@
     <header>
         <a href="#" class="logo">⚽ FootballHub</a>
         <nav>
-            <a href="#livescores">Live Scores</a>
-            <a href="#news">World News</a>
+            <a href="#livescores">Scores</a>
+            <a href="#tips">Tips</a>
+            <a href="#news">News</a>
         </nav>
     </header>
 
-    <!-- NATIVE AUTO-UPDATING LIVESCORES -->
+    <!-- LIVESCORES SECTION -->
     <section id="livescores">
         <div class="section-header">
             <h1 class="section-title">Worldwide Live Scores</h1>
-            <p class="section-subtitle">Real-time match data updated automatically across global leagues</p>
+            <p class="section-subtitle">Real-time match data across global leagues</p>
         </div>
-        
-        <div class="livescore-container">
-            <!-- Free Instant Widget Script -->
-            <a id="ls-widget" class="livescore-widget" href="https://www.livescore.bz" data-m="0" data-f="roboto" data-bw="100%" data-be="0">Live Scores</a>
-            <script type="text/javascript" src="https://www.livescore.bz/api/w/v1/ls.js?v=1" async></script>
+        <div class="livescore-wrapper">
+            <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
         </div>
     </section>
 
-    <!-- BREAKING WORLD NEWS -->
-    <section class="news-section" id="news">
-        <div style="text-align: center;">
-            <h2 class="section-title">Breaking World News</h2>
-            <p class="section-subtitle">Updated automatically from global football sports feeds</p>
+    <!-- DAILY PREDICTIONS & TIPS -->
+    <section id="tips" style="margin-top: 2rem;">
+        <div class="section-header">
+            <h2 class="section-title">Today's Match Predictions</h2>
+            <p class="section-subtitle">Data-backed match outcomes for upcoming fixtures</p>
         </div>
-        
+        <div class="tips-container">
+            <div class="tip-card">
+                <div>
+                    <div class="match-league">Premier League</div>
+                    <div class="match-teams">Arsenal vs Chelsea</div>
+                </div>
+                <div class="prediction-badge">Over 1.5 Goals</div>
+            </div>
+            <div class="tip-card">
+                <div>
+                    <div class="match-league">La Liga</div>
+                    <div class="match-teams">Real Madrid vs Real Betis</div>
+                </div>
+                <div class="prediction-badge">Real Madrid Win</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTOMATED FOOTBALL NEWS -->
+    <section class="news-section" id="news" style="margin-top: 2rem;">
+        <div class="section-header">
+            <h2 class="section-title">Breaking World News</h2>
+            <p class="section-subtitle">Updated automatically from global football sources</p>
+        </div>
         <div class="news-grid" id="news-feed">
             <p style="text-align: center; grid-column: 1/-1;">Loading live world news...</p>
         </div>
@@ -78,7 +105,6 @@
 
     <footer>
         <p>&copy; 2026 Global Football Hub. All rights reserved.</p>
-        <p style="margin-top:0.4rem;">Live scores updated automatically in real-time.</p>
     </footer>
 
     <script>

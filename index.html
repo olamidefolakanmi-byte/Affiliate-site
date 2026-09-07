@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootballDeals - Gear, Match Tips & Predictions</title>
+    <title>FootballDeals - Live Scores, News & Predictions</title>
     <style>
         :root {
             --primary-green: #00874e;
@@ -20,37 +19,48 @@
 
         header { background: #ffffff; padding: 1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary-green); }
-        nav a { margin-left: 0.75rem; color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        nav a { margin-left: 0.5rem; color: var(--text-dark); text-decoration: none; font-size: 0.8rem; font-weight: 600; }
 
-        .hero { background: linear-gradient(rgba(0, 135, 78, 0.85), rgba(0, 135, 78, 0.95)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80') center/cover; color: #ffffff; padding: 3rem 1.25rem; text-align: left; }
-        .hero-badge { background: rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
-        .hero h1 { font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
-        .hero p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 1.5rem; }
-        .btn-group { display: flex; gap: 0.75rem; }
-        .btn-main { background: #ffffff; color: var(--primary-green); padding: 0.75rem 1.25rem; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+        .hero { background: linear-gradient(rgba(0, 135, 78, 0.85), rgba(0, 135, 78, 0.95)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80') center/cover; color: #ffffff; padding: 2.5rem 1.25rem; text-align: left; }
+        .hero-badge { background: rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; display: inline-block; margin-bottom: 0.75rem; }
+        .hero h1 { font-size: 1.7rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+        .hero p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 1.25rem; }
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn-main { background: #ffffff; color: var(--primary-green); padding: 0.6rem 1rem; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 0.85rem; }
 
-        .section-title { font-size: 1.5rem; font-weight: 800; text-align: center; margin: 2.5rem 0 0.25rem; }
-        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; padding: 0 1rem; }
+        .section-title { font-size: 1.4rem; font-weight: 800; text-align: center; margin: 2rem 0 0.25rem; }
+        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; padding: 0 1rem; }
 
-        /* Match Tips Styling */
-        .tips-container { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; display: grid; gap: 1rem; }
-        .tip-card { background: var(--card-bg); border-radius: 16px; padding: 1.25rem; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
-        .match-info { font-weight: 700; font-size: 1.05rem; }
-        .match-league { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.25rem; }
-        .prediction-pill { background: #e6f4ea; color: var(--primary-green); font-weight: 800; font-size: 0.9rem; padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid rgba(0, 135, 78, 0.2); }
+        /* Livescore Widget Box */
+        .livescore-box { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; }
+        .livescore-frame { width: 100%; height: 500px; border: 1px solid #e2e8f0; border-radius: 16px; background: #ffffff; }
+
+        /* News Section */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; padding: 0 1.25rem; max-width: 1000px; margin: 0 auto; }
+        .news-card { background: var(--card-bg); border-radius: 16px; padding: 1.25rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; }
+        .news-date { font-size: 0.75rem; color: var(--primary-green); font-weight: 700; margin-bottom: 0.25rem; }
+        .news-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+        .news-excerpt { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+        /* Match Tips */
+        .tips-container { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; display: grid; gap: 0.75rem; }
+        .tip-card { background: var(--card-bg); border-radius: 12px; padding: 1rem 1.25rem; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .match-info { font-weight: 700; font-size: 0.95rem; }
+        .match-league { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+        .prediction-pill { background: #e6f4ea; color: var(--primary-green); font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; }
 
         /* Deals Grid */
         .deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; padding: 0 1.25rem; max-width: 1000px; margin: 0 auto; }
         .deal-card { background: var(--card-bg); border-radius: 16px; padding: 1.25rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-badges { display: flex; justify-content: space-between; margin-bottom: 1rem; }
-        .badge-green { background: #e6f4ea; color: var(--primary-green); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 12px; }
-        .badge-red { background: var(--badge-red); color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 12px; }
-        .deal-img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 1rem; }
-        .deal-cat { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .deal-name { font-size: 1.1rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
-        .price-box { font-size: 1.25rem; font-weight: 800; color: var(--primary-green); margin-bottom: 1rem; }
-        .old-price { font-size: 0.9rem; color: var(--text-muted); text-decoration: line-through; margin-left: 0.5rem; }
-        .btn-deal { background: var(--primary-green); color: #ffffff; text-align: center; padding: 0.75rem; border-radius: 25px; text-decoration: none; font-weight: 700; display: block; }
+        .card-badges { display: flex; justify-content: space-between; margin-bottom: 0.75rem; }
+        .badge-green { background: #e6f4ea; color: var(--primary-green); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 10px; }
+        .badge-red { background: var(--badge-red); color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 10px; }
+        .deal-img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 0.75rem; }
+        .deal-cat { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+        .deal-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .price-box { font-size: 1.15rem; font-weight: 800; color: var(--primary-green); margin-bottom: 0.75rem; }
+        .old-price { font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; margin-left: 0.4rem; }
+        .btn-deal { background: var(--primary-green); color: #ffffff; text-align: center; padding: 0.65rem; border-radius: 20px; text-decoration: none; font-weight: 700; display: block; font-size: 0.9rem; }
 
         footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.8rem; color: var(--text-muted); background: #ffffff; margin-top: 3rem; border-top: 1px solid #e2e8f0; }
     </style>
@@ -60,24 +70,62 @@
     <header>
         <div class="logo">⚽ FootballDeals</div>
         <nav>
-            <a href="#tips">Match Tips</a>
-            <a href="#deals">Gear Deals</a>
+            <a href="#livescores">Live</a>
+            <a href="#news">News</a>
+            <a href="#tips">Tips</a>
+            <a href="#deals">Deals</a>
         </nav>
     </header>
 
     <section class="hero">
-        <span class="hero-badge">Updated Daily</span>
-        <h1>Save money on gear & get daily football picks.</h1>
-        <p>Your daily hub for top football gear savings, boot reviews, and match predictions.</p>
+        <span class="hero-badge">All-In-One Sports Hub</span>
+        <h1>Live Scores, Breaking News & Daily Gear Deals.</h1>
+        <p>Track live matches, stay updated with transfer news, and grab daily boot savings.</p>
         <div class="btn-group">
-            <a href="#tips" class="btn-main">See Today's Tips</a>
+            <a href="#livescores" class="btn-main">Check Live Scores</a>
+            <a href="#news" class="btn-main">Read News</a>
         </div>
     </section>
+
+    <!-- Livescores Section -->
+    <h2 class="section-title" id="livescores">Live Football Scores</h2>
+    <p class="section-subtitle">Real-time score updates for major leagues around the world.</p>
+    <div class="livescore-box">
+        <iframe src="https://www.scorebat.com/embed/livescore/" class="livescore-frame" frameborder="0"></iframe>
+    </div>
+
+    <!-- Breaking News Section -->
+    <h2 class="section-title" id="news">Latest Football News</h2>
+    <p class="section-subtitle">Top headlines, transfer updates, and tactical insights.</p>
+    <div class="news-grid">
+        <div class="news-card">
+            <div>
+                <div class="news-date">TRANSFER UPDATE</div>
+                <div class="news-title">Top European Clubs Target Key Midfielders Ahead of Transfer Window</div>
+                <p class="news-excerpt">Scouting reports highlight dominant central playmakers as teams prepare major mid-season bids.</p>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div>
+                <div class="news-date">MATCH ANALYSIS</div>
+                <div class="news-title">Premier League Tactical Trends: High-Pressing Strategies Pay Off</div>
+                <p class="news-excerpt">An in-depth look at how top-tier teams are leveraging defensive transitions to create fast break opportunities.</p>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div>
+                <div class="news-date">TOURNAMENT WATCH</div>
+                <div class="news-title">Champions League Group Stage Predictions & Key Matchups</div>
+                <p class="news-excerpt">Previewing the biggest upcoming European clashes and analyzing individual squad fitness ahead of matchday.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Match Predictions Section -->
     <h2 class="section-title" id="tips">Today's Match Predictions</h2>
     <p class="section-subtitle">Short, honest picks with analysis for upcoming fixtures.</p>
-
     <div class="tips-container">
         <div class="tip-card">
             <div>
@@ -94,20 +142,11 @@
             </div>
             <div class="prediction-pill">Tip: Real Madrid Win</div>
         </div>
-
-        <div class="tip-card">
-            <div>
-                <div class="match-league">Serie A</div>
-                <div class="match-info">Inter Milan vs Juventus</div>
-            </div>
-            <div class="prediction-pill">Tip: Both Teams to Score</div>
-        </div>
     </div>
 
     <!-- Football Deals Section -->
     <h2 class="section-title" id="deals">Today's Football Deals</h2>
     <p class="section-subtitle">Hand-picked gear with real savings. Tap a card to grab the deal.</p>
-
     <div class="deals-grid">
         <div class="deal-card">
             <div>
@@ -121,7 +160,7 @@
             </div>
             <div>
                 <div class="price-box">$79.99 <span class="old-price">$129.99</span></div>
-                <a href="YOUR_AFFILIATE_LINK_HERE" class="btn-deal">Get This Deal</a>
+                <a href="#" class="btn-deal">Get This Deal</a>
             </div>
         </div>
 
@@ -137,14 +176,14 @@
             </div>
             <div>
                 <div class="price-box">$34.99 <span class="old-price">$59.99</span></div>
-                <a href="YOUR_AFFILIATE_LINK_HERE" class="btn-deal">Get This Deal</a>
+                <a href="#" class="btn-deal">Get This Deal</a>
             </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 FootballDeals. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">This site contains affiliate links. Tips are provided for entertainment purposes only.</p>
+        <p style="margin-top: 0.5rem;">This site contains affiliate links. Live scores provided by ScoreBat. Predictions are for entertainment only.</p>
     </footer>
 
 </body>

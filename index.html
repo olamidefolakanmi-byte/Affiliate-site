@@ -26,8 +26,8 @@
         .section-title { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
         .section-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
 
-        /* Full-Width Native Widget Container */
-        .livescore-native-container { width: 100%; min-height: 600px; padding: 0 0.5rem; max-width: 1200px; margin: 0 auto; }
+        /* Full-Width Live Scores Container */
+        .livescore-container { width: 100%; min-height: 600px; padding: 0 0.5rem; max-width: 1200px; margin: 0 auto; overflow-x: auto; }
 
         /* World News Section */
         .news-section { padding: 2rem 1rem; max-width: 1200px; margin: 0 auto; }
@@ -50,22 +50,17 @@
         </nav>
     </header>
 
-    <!-- NATIVE FULL-WIDTH LIVESCORES -->
+    <!-- NATIVE AUTO-UPDATING LIVESCORES -->
     <section id="livescores">
         <div class="section-header">
             <h1 class="section-title">Worldwide Live Scores</h1>
             <p class="section-subtitle">Real-time match data updated automatically across global leagues</p>
         </div>
         
-        <div class="livescore-native-container">
-            <!-- Native ScoreAxis Script Widget -->
-            <div class="scoreaxis-widget" 
-                 data-widget="livescore" 
-                 data-inst="YOUR_WIDGET_KEY_HERE" 
-                 data-lang="en" 
-                 data-theme="light">
-            </div>
-            <script src="https://www.scoreaxis.com/client/widget.js" async></script>
+        <div class="livescore-container">
+            <!-- Free Instant Widget Script -->
+            <a id="ls-widget" class="livescore-widget" href="https://www.livescore.bz" data-m="0" data-f="roboto" data-bw="100%" data-be="0">Live Scores</a>
+            <script type="text/javascript" src="https://www.livescore.bz/api/w/v1/ls.js?v=1" async></script>
         </div>
     </section>
 
